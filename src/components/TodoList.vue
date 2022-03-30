@@ -5,8 +5,6 @@
          v-for="todo in todos"
          :key="todo.id"
          :todo="todo"
-         :checkTodo="checkTodo"
-         :delTodo="delTodo"
      />
    </ul>
  </div>
@@ -18,7 +16,7 @@ import TodoItem from "@/components/TodoItem";
 export default {
   name: "TodoList",
   components:{TodoItem},
-  props:["todos","checkTodo","delTodo"]
+  props:["todos"]
 }
 </script>
 

@@ -9,7 +9,6 @@ import {nanoid} from "nanoid"
 
 export default {
   name: "TodoHeader",
-  props:["receive2Add"],
   data() {
     return {
       title: ""
@@ -22,7 +21,8 @@ export default {
       //构建新数据
       const todoObj = {id: nanoid(), name: this.title, completed: false}
       //调用数据传输方法
-      this.receive2Add(todoObj);
+      // this.receive2Add(todoObj);
+      this.$emit("receive2Add",todoObj)
       //清空输入框
       this.title="";
     }
@@ -38,7 +38,7 @@ export default {
 .todoHeader > input {
   width: 100%;
   height: 30px;
-  padding-left: 10px;
+  padding: 0 10px;
   border: 1px solid #ececec;
   border-radius: 5px;
   box-sizing: border-box;

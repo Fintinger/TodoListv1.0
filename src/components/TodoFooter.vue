@@ -5,14 +5,14 @@
       <input type="checkbox" v-model="isAll">
       <span>已完成 <span>{{ completedNum }}</span> / 全部 <span>{{ total }}</span></span>
     </label>
-    <button @click="handleDelAll">清除已完成任务</button>
+    <button class="btn_danger" @click="handleDelAll">清除已完成任务</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "TodoFooter",
-  props: ["todos", "checkAll", "DelAll"],
+  props: ["todos"],
   computed: {
     completedNum() {
       return this.todos.filter(el => el.completed === true).length
@@ -26,7 +26,8 @@ export default {
         return this.completedNum === this.total && this.total > 0
       },
       set(value){
-        this.checkAll(value)
+        // this.checkAll(value)
+        this.$emit("checkAll",value)
       }
     }
   },
@@ -36,7 +37,8 @@ export default {
     },*/
     handleDelAll() {
       if (confirm("是否删除所有已完成项？"))
-        this.DelAll()
+        // this.DelAll()
+        this.$emit("DelAll")
     }
   }
 }
