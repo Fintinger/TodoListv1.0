@@ -3,6 +3,8 @@
 
 > ①通过属性和`props`在组件间传递数据 ②使用vue.js 2.0
 
+![通过属性和props在组件间传递数据](https://picgo-jqf.oss-cn-beijing.aliyuncs.com/img/202203292059448.png)
+
 1. 组件化编码流:
 
    1. 拆分静态组件:组件要按照功能点拆分,命名不要与html元素冲突.

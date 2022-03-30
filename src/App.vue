@@ -1,8 +1,8 @@
 <template>
   <div class="todoContainer">
     <TodoHeader :receive2Add="receive2Add"/>
-    <TodoList :checkTodo="checkTodo" :todos="todos" :delTodo="delTodo"/>
-    <TodoFooter :todos="todos" :checkAll="checkAll" :DelAll="DelAll"/>
+    <TodoList :checkTodo="checkTodo" :delTodo="delTodo" :todos="todos"/>
+    <TodoFooter :DelAll="DelAll" :checkAll="checkAll" :todos="todos"/>
   </div>
 </template>
 
@@ -17,11 +17,7 @@ export default {
   components: {TodoHeader, TodoList, TodoFooter},
   data() {
     return {
-      todos: [
-        {id: nanoid(), name: "学习vue.js", completed: true},
-        {id: nanoid(), name: "学习javascript", completed: false},
-        {id: nanoid(), name: "吃饭", completed: false},
-      ]
+      todos: JSON.parse(localStorage.getItem("todos")) || []
     }
   },
   methods: {
@@ -37,16 +33,24 @@ export default {
       })
     },
     //删除一个todo
-    delTodo(id){
-      this.todos=this.todos.filter(el=>el.id!==id)
+    delTodo(id) {
+      this.todos = this.todos.filter(el => el.id !== id)
     },
     //全选或取消全选
-    checkAll(val){
-      this.todos.forEach(el=>el.completed=val)
+    checkAll(val) {
+      this.todos.forEach(el => el.completed = val)
     },
     //删除所有已经完成的项目
-    DelAll(){
-      this.todos=this.todos.filter(el=>el.completed!==true)
+    DelAll() {
+      this.todos = this.todos.filter(el => el.completed !== true)
+    }
+  },
+  watch: {
+    todos: {
+      deep: true,
+      handler(val) {
+        localStorage.setItem("todos", JSON.stringify(val))
+      }
     }
   }
 }
